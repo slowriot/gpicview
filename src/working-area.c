@@ -53,8 +53,10 @@ static gboolean gf_display_get_workarea(GdkScreen* g_screen, GdkRectangle *rect)
 	if(!g_display)
 		return FALSE;
 
+#if defined(GDK_IS_X11_DISPLAY) && defined(GDK_IS_X11_SCREEN)
 	if(!GDK_IS_X11_DISPLAY(g_display) || !GDK_IS_X11_SCREEN(g_screen))
 		return FALSE;
+#endif
 
 	/* get the x display from the gdk display */
 	x_display = gdk_x11_display_get_xdisplay(g_display);
